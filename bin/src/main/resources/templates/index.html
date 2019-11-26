@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="AppCrud">
+<head>
+<meta charset="UTF-8" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+<script src="./js/app.js"></script>
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous">
+	
+</script>
+</head>
+<body ng-controller="indexController">
+
+	<br /> Titulo:
+	<input type="text" ng-model="aviso.titulo" />
+	<br /> Descricao:
+	<input type="text" ng-model="aviso.descricao" />
+	<br /> Data De Publicao:
+	<input type="date" ng-model="aviso.dataDePublicacao" />
+	<br /> Data De Visualizacao:
+	<input type="date" ng-model="aviso.dataDeVisualizacao" />
+	<br />
+	<input type="button" value="Salvar" ng-click="SalvarAvisos()" />
+	<input type="button" value="limparCampo" ng-click="limparCampo()" />
+
+	<br />
+	<br />
+	<div ng-repeat="organizando in avisos">
+		{{ ' | Titulo: '+organizando.titulo }}
+
+		<div id="Show" ng-init="Show = false" ng-show="Show">{{ ' | ID:
+			'+ organizando.id + ' | Descricao: '+ organizando.descricao + ' |
+			Data De Publicacao: '+organizando.dataDePublicacao + ' | Data De
+			Visualizacao: ' +organizando.dataDeVisualizacao }}</div>
+		<button type="button" ng-click="Show = !Show">Mostar</button>
+		<input type="button" value="Excluir"
+			ng-click="ExcluirAviso(organizando)" /> <input type="button"
+			value="Alterar" ng-click="AlterarAviso(organizando)" />
+	</div>
+</body>
+</html>
