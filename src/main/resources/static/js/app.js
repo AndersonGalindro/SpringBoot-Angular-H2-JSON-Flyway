@@ -1,25 +1,23 @@
 //criação do modulo principal da aplicação
 var AppCrud = angular.module("AppCrud", []);
 
-
-//Criação de controller
+// Criação de controller
 AppCrud.controller("indexController", function($scope, $http) {
 
 	$scope.avisos = [];
 	$scope.aviso = {};
 
 	// Carregar Dados
-	ListarAvisos = function() {
+	$scope.ListarAvisos = function() {
 
 		$http({
 			method : 'GET',
-			url : 'http://localhost:8080/Aviso'
+			url : '/aviso'
 		}).then(function(response) {
 			$scope.avisos = response.data;
 
 		}, function(response) {
-			console.log(response.data);
-			console.log(response.status);
+			alert("falha ao buscar avisos");
 		});
 
 	};
@@ -28,13 +26,12 @@ AppCrud.controller("indexController", function($scope, $http) {
 	$scope.SalvarAvisos = function() {
 
 		$http({
-			method : 'POST',
-			url : 'http://localhost:8080/Aviso',
+			method : $scope.aviso.id ? 'PUT' : 'POST',
+			url : $scope.aviso.id ? '/aviso/' + $scope.aviso.id : '/aviso',
 			data : $scope.aviso
 		}).then(function(response) {
-			ListarAvisos
-			// $scope.avisos.push(response.data);
-			ListarAvisos();
+
+			$scope.ListarAvisos();
 
 		}, function(response) {
 			console.log(response.data);
@@ -49,19 +46,13 @@ AppCrud.controller("indexController", function($scope, $http) {
 
 		$http({
 			method : 'DELETE',
-			url : 'http://localhost:8080/Aviso/' + aviso.id
+			url : '/aviso/' + aviso.id
 		}).then(function(response) {
-
-			// Varrer Array
-			for (i = 0; i < $scope.avisos.length; i++) {
-				if ($scope.avisos[i].id == aviso.id) {
-					$scope.avisos.splice(i, 1);
-					break;
-				}
-			}
+			alert("Excluido com sucesso!");
+			$scope.ListarAvisos();
 		}, function(response) {
-			console.log(response.data);
-			console.log(response.status);
+			alert("Falha ao excluir!");
+
 		});
 
 	}
@@ -69,17 +60,14 @@ AppCrud.controller("indexController", function($scope, $http) {
 	// Alterar Dados
 	$scope.AlterarAviso = function(modificarAviso) {
 		$scope.aviso = angular.copy(modificarAviso);
-		
 
 	};
 
 	// Limpar Campo
 	$scope.limparCampo = function() {
-		$scope.aviso = {};
+		$scope.aviso;
 	};
 
-	ListarAvisos();
-		
-	
-	
+	$scope.ListarAvisos();
+
 });
