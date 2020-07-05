@@ -34,16 +34,15 @@ Em seguinda o Eclipse irá carregar todas as configurações necessárias para i
 
 #### Como Startar O Projeto?
 
-Clicar com o botão direito do mouse no projeto "SpringBoot-Angular-H2-JSON-Flyway", ir em "Run As" e escolha a opção "Spring Boot App", a aplicação poderá ser acessada na URL "http://localhost:8080"
+Clicar com o botão direito do mouse no projeto "SpringBoot-Angular-H2-JSON-Flyway", ir em "Run As" e escolha a opção "Spring Boot App", a aplicação poderá ser acessada na URL "http://localhost:8080" e o H2 pode ser acessado "http://localhost:8080/h2-console"
 
 #### Observação: Se em "Run As" não tiver a opção "Spring Boot App", o projeto deverá ser convertido para "Maven Project", Uma forma de converter é: Botão direito do mouse no projeto, "Configure" e escolher a opção "Convert To Maven Project", Assim que o procedimento for finalizar, a opção "Spring Boot App" deverá aparecer em "Run As"
 
 
 ##### segue vídeo para melhor auxiliar nos procedimentos citado á cima https://youtu.be/jHarA52BC6o 
-##### Antes De Startar Observe As Configurações Do Bando De Dados.
 
 ### Sobre o Banco De Dados
 
-Dentro do reposotório "SpringBoot-Angular-H2-JSON-Flyway\src\main\resources" existe um arquivo com o nome de "application.properties" esse arquivo é onde fica configurado a conexão com o banco. Atente-se para colocar as informações correspondentes do banco no que você está usando.
+Dentro do reposotório "SpringBoot-Angular-H2-JSON-Flyway\src\main\resources" existe um arquivo com o nome de "application.properties" esse arquivo é onde fica configurado a conexão com o banco. como o H2 esta integrado, não se faz necessário a preocupação com o banco.
 
 #### ATENÇÂO: Como nessa aplicação temos o Flyway, Lembre-se de que o caminho para a pasta de migração é "SpringBoot-Angular-H2-JSON-Flyway\src\main\resources\db\migration" e o padrão dos arquivos que devem ficar lá dentro possui a nomaclatura "V[seguencial]__[NomeQue Quiser].sql , Exemplo: V1__ScriptDeCriação.sql , V2__ScriptDeAlteração.sql" e o padrão de query segue conforme o banco usado.
